@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    
+<project name="fibonacci" default="main">
+    <target name ="main" depends="compile, jar" description="Create an executable .jar">
+        <echo>
+            Building the jar file.
+        </echo>
+    </target>
+
+    <target name="compile" description="compile source">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes" includeantruntime="false"/>
+    </target>
+    
+    <target name="jar" description="Create an executable .jar file">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/fibonacci.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="com.tinylan.fibonacci.StartFib"/>
+            </manifest>
+        </jar>
+    </target>
+    
+    <target name="run" description="runs the .jar file">
+        <java jar="build/jar/fibonacci.jar" fork="true"/>
+    </target>
+    
+    <target name="clean" description="Clean build directory">
+        <delete dir="build"/>
+    </target>
+</project>
