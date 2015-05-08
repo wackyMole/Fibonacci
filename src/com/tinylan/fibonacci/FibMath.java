@@ -4,14 +4,16 @@ import java.math.BigInteger;
 
 /**
  * handles the mathematics of the application.
- * 
+ *
  * @author Justin Reherman
  */
 public class FibMath extends StartFib {
-    
+
+    private static final long serialVersionUID = 1L;
+
     /**
      * calculate fibonacci numbers using a loop
-     * 
+     *
      * @param number type long integer
      * @return       type long integer
      */
@@ -23,10 +25,10 @@ public class FibMath extends StartFib {
         } else if(number == 2) {
             return 1;
         }
-        
+
         // "Prime" the loop by providing the first two terms
         long fibo1=1, fibo2=1, fibonacci=1;
-        
+
         // Loop "number" times to get the result
         for(long i=3; i<=number; i++){
             // Fibonacci number is sum of the two previous numbers
@@ -37,16 +39,16 @@ public class FibMath extends StartFib {
         // Return the result
         return fibonacci;
     }
-    
+
     /**
      * Calculate large fibonacci numbers using a loop
-     * 
+     *
      * @param number    type long integer
      * @return          type long integer
      */
     public static BigInteger fibonacciBig(long number){
         // A special class to calculate a fibonacci term where n is larger than 94.
-        
+
         // Immediately return results for the 94th and 95th term
         // These are used to "prime" the loop
         if(number == 1) {
@@ -54,12 +56,12 @@ public class FibMath extends StartFib {
         } else if(number == 2) {
             return new BigInteger("19740274219868223167");
         }
-       
+
         // "Prime" the formula by providing the first two terms
         BigInteger fibo94 = new BigInteger("12200160415121876738"),
-            fibo95 = new BigInteger("19740274219868223167"),
-            fibonacci = new BigInteger("19740274219868223167");
-        
+        fibo95 = new BigInteger("19740274219868223167"),
+        fibonacci = new BigInteger("19740274219868223167");
+
         // Loop "number" times to get the result
         for(long i=3; i<=number; i++) {
             // Fibonacci number is sum of two previous numbers

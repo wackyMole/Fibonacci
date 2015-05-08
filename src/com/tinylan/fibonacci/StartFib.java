@@ -4,6 +4,9 @@ package com.tinylan.fibonacci;
 import static com.tinylan.fibonacci.FibMath.*;
 import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 /**
  * handles the GUI and calls the classes needed to do the hard work
@@ -11,6 +14,14 @@ import javax.swing.JOptionPane;
  * @author Justin Reherman
  */
 public class StartFib extends javax.swing.JFrame {
+
+    // Variables declaration
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JCheckBox checkBox;
+    public javax.swing.JTextField textField;
+    private javax.swing.JButton go;
+
+    private static final long serialVersionUID = 1L;
 
     /** Creates new form StartFib */
     public StartFib() {
@@ -25,6 +36,7 @@ public class StartFib extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         textField = new javax.swing.JTextField();
+        checkBox = new javax.swing.JCheckBox();
         go = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -39,9 +51,14 @@ public class StartFib extends javax.swing.JFrame {
         textField.setFont(new java.awt.Font("Tahoma", 0, 24));
         textField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        checkBox.setFont(new java.awt.Font("Dialog", 1, 12));
+        checkBox.setText("Format for Reddit");
+        checkBox.setBackground(new java.awt.Color(255, 102, 0));
+
         // Again with the fonts
         go.setFont(new java.awt.Font("Tahoma", 1, 18));
         go.setText("Go!");
+        go.setHorizontalAlignment(javax.swing.JButton.CENTER);
         go.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         go.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -50,28 +67,33 @@ public class StartFib extends javax.swing.JFrame {
         });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanel1Layout.createParallelGroup(Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(82, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(textField, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(75, 75, 75))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(go, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(145, 145, 145))))
-        );
+                .addContainerGap(96, Short.MAX_VALUE)
+                .addComponent(textField, GroupLayout.PREFERRED_SIZE, 243, GroupLayout.PREFERRED_SIZE)
+                .addGap(133))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+               .addGap(149)
+               .addComponent(checkBox)
+               .addContainerGap(174, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(174)
+                .addComponent(go, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(198, Short.MAX_VALUE))
+            );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanel1Layout.createParallelGroup(Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(textField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(go, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
-        );
+                .addGap(32)
+                .addComponent(textField, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(ComponentPlacement.UNRELATED)
+                .addComponent(checkBox)
+                .addPreferredGap(ComponentPlacement.UNRELATED)
+                .addComponent(go, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
+            );
+        jPanel1.setLayout(jPanel1Layout);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,10 +119,10 @@ public class StartFib extends javax.swing.JFrame {
         if ("".equals(textField.getText())) {
             //If it is blank, then we whine to the user.
             JOptionPane.showMessageDialog(
-                    null,
-                    "I can't do anything until you enter a number.",
-                    "Nothing was entered!",
-                    JOptionPane.ERROR_MESSAGE);
+                null,
+                "I can't do anything until you enter a number.",
+                "Nothing was entered!",
+                JOptionPane.ERROR_MESSAGE);
         } else {
             // Otherwise we can kick of processing.
             // First we'll declare this here so that we can use it later.
@@ -127,17 +149,17 @@ public class StartFib extends javax.swing.JFrame {
                 // Lets also get the length of the output.
                 long length = output.length();
                 JOptionPane.showMessageDialog(null,
-                            "Completed in " 
-                                + df.format(seconds)
-                                + " seconds with a result that was "
-                                + length
-                                + " digits long.",
-                            "Completed!",
-                            JOptionPane.INFORMATION_MESSAGE);
+                    "Completed in " 
+                    + df.format(seconds)
+                    + " seconds with a result that was "
+                    + length
+                    + " digits long.",
+                    "Completed!",
+                    JOptionPane.INFORMATION_MESSAGE);
                 // Send the output over to "OutProcessor" to handle
                 // the output and return the value to place in the
                 // text box.
-                String out = OutProcessor.out(output);
+                String out = OutProcessor.out(output, checkBox.isSelected());
                 // Here we set the returned value into the text box.
                 textField.setText(out);
             } else {
@@ -152,16 +174,16 @@ public class StartFib extends javax.swing.JFrame {
                 long length = output.length();
                 // and show the user this data.
                 JOptionPane.showMessageDialog(null,
-                            "Completed in " 
-                                + df.format(seconds)
-                                + " seconds with a result that was "
-                                + length
-                                + " digits long.",
-                            "Completed!",
-                            JOptionPane.INFORMATION_MESSAGE);
+                    "Completed in " 
+                    + df.format(seconds)
+                    + " seconds with a result that was "
+                    + length
+                    + " digits long.",
+                    "Completed!",
+                    JOptionPane.INFORMATION_MESSAGE);
                 // Again, we are sending the output to OutProcessor to do
                 // it's work and return the value for the text box.
-                String out = OutProcessor.out(output);
+                String out = OutProcessor.out(output, checkBox.isSelected());
                 // and then set the returned value into the text box.
                 textField.setText(out);
             }
@@ -204,8 +226,4 @@ public class StartFib extends javax.swing.JFrame {
             }
         });
     }
-    // Variables declaration
-    private javax.swing.JButton go;
-    private javax.swing.JPanel jPanel1;
-    public javax.swing.JTextField textField;
 }

@@ -11,7 +11,9 @@ import javax.swing.JOptionPane;
  * @author Justin Reherman
  */
 public class FileIO extends StartFib {
-    
+
+    private static final long serialVersionUID = 1L;
+
     /** Writes output to "output.txt"
      * 
      * @param output type string
@@ -24,10 +26,10 @@ public class FileIO extends StartFib {
             // If it fails we inform the user that we were unable to write
             // to a file.
             JOptionPane.showMessageDialog(
-                    null,
-                    "Uable to write to file! Check permissions and try again.",
-                    "File write error!",
-                    JOptionPane.ERROR_MESSAGE);
+                null,
+                "Unable to write to file! Check permissions and try again.",
+                "File write error!",
+                JOptionPane.ERROR_MESSAGE);
         }
     }
 }
