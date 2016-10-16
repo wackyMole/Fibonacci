@@ -117,6 +117,13 @@ public class StartFib extends javax.swing.JFrame {
                 "I can't do anything until you enter a number.",
                 "Nothing was entered!",
                 JOptionPane.ERROR_MESSAGE);
+        } else if ("0".equals(textField.getText())) {
+            // There is no 0th fibonacci number.
+            JOptionPane.showMessageDialog(
+                null,
+                "I can't do anything with what you've entered.",
+                "Invalid Entry",
+                JOptionPane.ERROR_MESSAGE);
         } else {
             // Otherwise we can kick off processing.
             // First we'll declare this here so that we can use it later.

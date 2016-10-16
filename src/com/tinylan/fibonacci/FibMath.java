@@ -21,7 +21,7 @@ public class FibMath extends StartFib {
     public static long fibonacciLoop(long number){
         // Immediately return results for the 1st and 2nd term
         // These are used to "prime" the loop
-        if(number ==1 || number == 2) {
+        if(number == 1 || number == 2) {
             return 1;
         }
 
