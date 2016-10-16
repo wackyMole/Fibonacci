@@ -6,16 +6,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 
-/** Handles file IO operations
- * 
+/**
+ * Handles file IO operations
+ *
  * @author Justin Reherman
  */
 public class FileIO extends StartFib {
 
     private static final long serialVersionUID = 1L;
 
-    /** Writes output to "output.txt"
-     * 
+    /**
+     * Writes output to "output.txt"
+     *
      * @param output type string
      */
     public static void writeFile(String output) {

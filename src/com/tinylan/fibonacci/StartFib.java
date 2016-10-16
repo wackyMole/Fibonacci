@@ -9,7 +9,7 @@ import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 /**
- * handles the GUI and calls the classes needed to do the hard work
+ * Handles the GUI and calls the classes needed to do the hard work
  *
  * @author Justin Reherman
  */
@@ -43,11 +43,6 @@ public class StartFib extends javax.swing.JFrame {
         setTitle("Fibonacci");
         setResizable(false);
 
-        // I don't know what color to use. Let me konw if you can thing of a better one
-        jPanel1.setBackground(new java.awt.Color(255, 102, 0));
-        jPanel1.setToolTipText("");
-
-        // Same thing with the fonts
         textField.setFont(new java.awt.Font("Tahoma", 0, 24));
         textField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
@@ -55,7 +50,6 @@ public class StartFib extends javax.swing.JFrame {
         checkBox.setText("Format for Reddit");
         checkBox.setBackground(new java.awt.Color(255, 102, 0));
 
-        // Again with the fonts
         go.setFont(new java.awt.Font("Tahoma", 1, 18));
         go.setText("Go!");
         go.setHorizontalAlignment(javax.swing.JButton.CENTER);
@@ -70,17 +64,17 @@ public class StartFib extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(96, Short.MAX_VALUE)
+                .addContainerGap(115, Short.MAX_VALUE)
                 .addComponent(textField, GroupLayout.PREFERRED_SIZE, 243, GroupLayout.PREFERRED_SIZE)
-                .addGap(133))
+                .addGap(115))
             .addGroup(jPanel1Layout.createSequentialGroup()
-               .addGap(149)
+               .addGap(161)
                .addComponent(checkBox)
-               .addContainerGap(174, Short.MAX_VALUE))
+               .addContainerGap(161, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(174)
+                .addGap(186)
                 .addComponent(go, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addContainerGap(186, Short.MAX_VALUE))
             );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(Alignment.LEADING)
@@ -110,8 +104,8 @@ public class StartFib extends javax.swing.JFrame {
     }
 
     /**
-     * handles the logic that occurs when the button is pressed.
-     * 
+     * Handles the logic that occurs when the button is pressed.
+     *
      * @param evt the event that triggered the action
      */
     private void goActionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,17 +118,22 @@ public class StartFib extends javax.swing.JFrame {
                 "Nothing was entered!",
                 JOptionPane.ERROR_MESSAGE);
         } else {
-            // Otherwise we can kick of processing.
+            // Otherwise we can kick off processing.
             // First we'll declare this here so that we can use it later.
             DecimalFormat df = new DecimalFormat("#.##");
+
             //Then we'll start the timer
             long startTime = System.nanoTime();
-            // First declare the "output" field.
+
+            // First declare the "output" data.
             String output = "";
+
             // Then convert the input to a String.
             String text = textField.getText();
+
             // and finally convert the String to a long Integer.
             long number = Integer.parseInt(text);
+
             // We need to diverge paths here if the query is for the 94th term
             // or higher. This is because a "long" primitive can only handle the
             // terms up to the 93rd term. Beyond that we need to use a method
@@ -142,48 +141,58 @@ public class StartFib extends javax.swing.JFrame {
             if (number > 92) {
                 number = number - 92;
                 output = (fibonacciBig(number) + "");
+
                 // Now that things are done, we can stop the timer.
                 long endTime = System.nanoTime();
                 long time = endTime - startTime;
                 double seconds = (double)time / 1000000000.0;
+
                 // Lets also get the length of the output.
                 long length = output.length();
+
                 JOptionPane.showMessageDialog(null,
-                    "Completed in " 
+                    "Completed in "
                     + df.format(seconds)
                     + " seconds with a result that was "
                     + length
                     + " digits long.",
                     "Completed!",
                     JOptionPane.INFORMATION_MESSAGE);
+
                 // Send the output over to "OutProcessor" to handle
                 // the output and return the value to place in the
                 // text box.
                 String out = OutProcessor.out(output, checkBox.isSelected());
+
                 // Here we set the returned value into the text box.
                 textField.setText(out);
             } else {
                 // generate fibonacci number for querries less than 94.
                 // Call the fibonacciLoop method from FibMath class.
                 output = (fibonacciLoop(number) + "");
+
                 // Now that things are done, we can stop the timer.
                 long endTime = System.nanoTime();
                 long time = endTime - startTime;
                 double seconds = (double)time / 1000000000.0;
+
                 // Lets also get the length of the output.
                 long length = output.length();
+
                 // and show the user this data.
                 JOptionPane.showMessageDialog(null,
-                    "Completed in " 
+                    "Completed in "
                     + df.format(seconds)
                     + " seconds with a result that was "
                     + length
                     + " digits long.",
                     "Completed!",
                     JOptionPane.INFORMATION_MESSAGE);
+
                 // Again, we are sending the output to OutProcessor to do
                 // it's work and return the value for the text box.
                 String out = OutProcessor.out(output, checkBox.isSelected());
+
                 // and then set the returned value into the text box.
                 textField.setText(out);
             }
@@ -192,14 +201,14 @@ public class StartFib extends javax.swing.JFrame {
 
     /**
      * set the look and feel and display the form
-     * 
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /**
          * Set the Nimbus look and feel
          * If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

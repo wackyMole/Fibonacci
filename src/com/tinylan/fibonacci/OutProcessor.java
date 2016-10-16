@@ -7,7 +7,7 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
- * handles processing of the result
+ * Handles processing of the result
  *
  * @author Justin Reherman
  */
@@ -17,17 +17,20 @@ public class OutProcessor extends StartFib {
 
     /**
      * Determines if the output will fit in the GUI or needs to written to file
-     * 
+     *
      * @param output type string
+     *
      * @return       type string
      */
     public static String out(String output, Boolean reddit) {
         // First we need to get the length of the output so that we can determine
         // if the result will fit in the box
         long length = output.length();
+
         if (reddit) {
             length = length + 2;
         }
+
         // If the length is short enough to fit nicely in the box we return the
         // output as is
         if(length <= 15) {
@@ -40,12 +43,15 @@ public class OutProcessor extends StartFib {
         } else {
             // Add a space after every tenth character
             output = output.replaceAll("(.{10})", "$1 ");
+
             // If the checkbox was checked, we'll format it for reddit
             if (reddit) {
                 output = "`" + output + "`";
             }
+
             // Here we call fileIO to write the output to file
             FileIO.writeFile(output);
+
             // Next, we determine if a desktop is supported.
             if(Desktop.isDesktopSupported()) {
                 // If it is, we determine if "open" action is supported.
@@ -63,6 +69,7 @@ public class OutProcessor extends StartFib {
                         null,
                         options,
                         options[0]);
+
                     // If they elected to open the file, then we attempt to open
                     // it in their default text editor.
                     if(n == 0) {
@@ -86,7 +93,8 @@ public class OutProcessor extends StartFib {
                         JOptionPane.INFORMATION_MESSAGE);
                 }
             }
+
             return "";
         }
-    } 
+    }
 }
